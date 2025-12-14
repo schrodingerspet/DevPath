@@ -1,7 +1,9 @@
 "use client";
 
 import Link from 'next/link';
-import { Globe, Github, LogIn, Code2 } from 'lucide-react';
+import Image from 'next/image';
+import { Globe, Github, LogIn } from 'lucide-react';
+import logo from '@/assets/logo.png';
 import { useAuth } from '@/context/AuthContext';
 import Notifications from './Notifications';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
@@ -14,7 +16,7 @@ export default function Navbar() {
         <nav className={styles.navbar}>
             <Link href="/" className={styles.logo}>
                 <div className={styles.logoIcon}>
-                    <Code2 size={32} className="text-primary" />
+                    <Image src={logo} alt="DevPath Logo" width={32} height={32} />
                 </div>
                 DevPath
             </Link>
