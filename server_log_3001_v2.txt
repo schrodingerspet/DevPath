@@ -1,6 +1,0 @@
-   Γû▓ Next.js 16.0.10
-   - Local:         http://localhost:3001
-   - Network:       http://192.168.193.211:3001
-
- Γ£ô Starting...
- Γ£ô Ready in 1538ms
