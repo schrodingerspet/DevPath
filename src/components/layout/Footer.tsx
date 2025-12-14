@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Github, Twitter, Send, Book, Cloud, Flag, Users, RefreshCw, Code, Globe } from 'lucide-react';
+import logo from '@/assets/logo.png';
 import styles from './Footer.module.css';
 
 import { MagneticText } from '../ui/magnetic-text';
@@ -12,7 +13,7 @@ export default function Footer() {
                 <div className={styles.content}>
                     <div className={styles.brand}>
                         <h3>
-                            <Image src="/logo.png" alt="DevPath Logo" width={32} height={32} style={{ marginRight: '12px' }} />
+                            <Image src={logo} alt="DevPath Logo" width={32} height={32} style={{ marginRight: '12px' }} />
                             DevPath
                         </h3>
                         <p className={styles.tagline}>

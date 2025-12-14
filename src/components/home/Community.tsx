@@ -1,5 +1,6 @@
 import { MessageCircle } from 'lucide-react';
 import Image from 'next/image';
+import logo from '@/assets/logo.png';
 import Button from '../ui/Button';
 import styles from './Community.module.css';
 
@@ -33,7 +34,7 @@ export default function Community() {
                         <div className={styles.chatHeader}>
                             <div className={styles.serverInfo}>
                                 <div className={styles.serverIcon}>
-                                    <Image src="/logo.png" alt="DevPath" width={40} height={40} />
+                                    <Image src={logo} alt="DevPath" width={40} height={40} />
                                 </div>
                                 <div>
                                     <span className={styles.serverName}>DevPath Official</span>
