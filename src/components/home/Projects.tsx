@@ -1,48 +1,55 @@
 import { Star, GitFork, Eye } from 'lucide-react';
+import { ProjectCard } from '../ProjectCard';
 import styles from './Projects.module.css';
 
 const projects = [
     {
         title: "AI Code Assistant",
         author: "Sarah Chen",
-        tags: ["React", "Python", "OpenAI"],
+        technologies: ["React", "Python", "OpenAI"],
         stats: { stars: 1240, forks: 350, views: "12k" },
-        color: "#3b82f6"
+        color: "#3b82f6",
+        description: "An intelligent coding companion that helps developers write better code faster. Features include real-time syntax checking, automated refactoring suggestions, and natural language to code translation."
     },
     {
         title: "DeFi Dashboard",
         author: "Mike Johnson",
-        tags: ["Vue", "Web3", "Solidity"],
+        technologies: ["Vue", "Web3", "Solidity"],
         stats: { stars: 850, forks: 120, views: "8k" },
-        color: "#10b981"
+        color: "#10b981",
+        description: "A comprehensive dashboard for tracking decentralized finance investments. Supports multiple wallets, real-time price updates, and yield farming analytics."
     },
     {
         title: "Real-time Chat App",
         author: "Alex Rivera",
-        tags: ["Next.js", "Socket.io"],
+        technologies: ["Next.js", "Socket.io"],
         stats: { stars: 2100, forks: 500, views: "25k" },
-        color: "#8b5cf6"
+        color: "#8b5cf6",
+        description: "Scalable chat application capable of handling millions of concurrent connections. Features end-to-end encryption, file sharing, and voice messages."
     },
     {
         title: "E-commerce Platform",
         author: "Emily Zhang",
-        tags: ["Angular", "Node.js"],
+        technologies: ["Angular", "Node.js"],
         stats: { stars: 980, forks: 230, views: "10k" },
-        color: "#f59e0b"
+        color: "#f59e0b",
+        description: "Full-featured e-commerce solution with inventory management, payment processing, and customer analytics dashboard."
     },
     {
         title: "DevOps Pipeline Tool",
         author: "David Kim",
-        tags: ["Go", "Docker", "K8s"],
+        technologies: ["Go", "Docker", "K8s"],
         stats: { stars: 1500, forks: 400, views: "15k" },
-        color: "#ec4899"
+        color: "#ec4899",
+        description: "Automated CI/CD pipeline generator for microservices architectures. Simplifies deployment to Kubernetes clusters."
     },
     {
         title: "Mobile Fitness App",
         author: "Lisa Park",
-        tags: ["React Native", "Firebase"],
+        technologies: ["React Native", "Firebase"],
         stats: { stars: 3200, forks: 800, views: "40k" },
-        color: "#6366f1"
+        color: "#6366f1",
+        description: "Cross-platform fitness tracking application with social features, workout plans, and integration with wearable devices."
     }
 ];
 
@@ -58,42 +65,7 @@ export default function Projects() {
 
             <div className={styles.grid}>
                 {projects.map((project, index) => (
-                    <div key={index} className={styles.projectCard}>
-                        <div
-                            className={styles.thumbnail}
-                            style={{
-                                background: `linear-gradient(45deg, ${project.color}, #1a1f35)`,
-                                opacity: 0.8
-                            }}
-                        />
-
-                        <div className={styles.overlay}>
-                            <div className={styles.author}>
-                                <div className={styles.avatar} />
-                                <span className={styles.authorName}>{project.author}</span>
-                            </div>
-
-                            <h3 className={styles.projectTitle}>{project.title}</h3>
-
-                            <div className={styles.tags}>
-                                {project.tags.map(tag => (
-                                    <span key={tag} className={styles.tag}>{tag}</span>
-                                ))}
-                            </div>
-
-                            <div className={styles.stats}>
-                                <div className={styles.stat}>
-                                    <Star size={14} /> {project.stats.stars}
-                                </div>
-                                <div className={styles.stat}>
-                                    <GitFork size={14} /> {project.stats.forks}
-                                </div>
-                                <div className={styles.stat}>
-                                    <Eye size={14} /> {project.stats.views}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <ProjectCard key={index} project={project} />
                 ))}
             </div>
         </section>

@@ -1,4 +1,6 @@
+"use client"
 import { MessageCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import logo from '@/assets/logo.png';
 import Button from '../ui/Button';
@@ -30,7 +32,13 @@ export default function Community() {
                 </div>
 
                 <div className={styles.mockupWrapper}>
-                    <div className={styles.chatCard}>
+                    <motion.div
+                        className={styles.chatCard}
+                        initial={{ y: 20, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.8 }}
+                        whileHover={{ y: -5, scale: 1.02 }}
+                    >
                         <div className={styles.chatHeader}>
                             <div className={styles.serverInfo}>
                                 <div className={styles.serverIcon}>
@@ -38,7 +46,10 @@ export default function Community() {
                                 </div>
                                 <div>
                                     <span className={styles.serverName}>DevPath Official</span>
-                                    <span className={styles.serverStatus}>325 online</span>
+                                    <span className={styles.serverStatus}>
+                                        <span className="inline-block w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse" />
+                                        325 online
+                                    </span>
                                 </div>
                             </div>
                             <div style={{ color: 'var(--text-secondary)', fontSize: '12px' }}>
@@ -80,7 +91,7 @@ export default function Community() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>

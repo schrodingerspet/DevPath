@@ -1,4 +1,5 @@
 import { Calendar, Video } from 'lucide-react';
+import { RSVPButton } from '../RSVPButton';
 import styles from './Events.module.css';
 
 const events = [
@@ -67,9 +68,10 @@ export default function Events() {
                                     <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                                         <Video size={14} /> {event.type}
                                     </span>
-                                    <button className={styles.rsvpButton}>
+                                    <button className={styles.rsvpButton} style={{ display: 'none' }}>
                                         RSVP Now
                                     </button>
+                                    <RSVPButton />
                                 </div>
                             </div>
                         </div>

@@ -1,4 +1,7 @@
+"use client"
 import { FileText, Video, Code, Terminal, Book, ArrowRight, Star } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { PremiumCard } from '../ui/PremiumCard';
 import styles from './Resources.module.css';
 
 const resources = [
@@ -58,28 +61,41 @@ export default function Resources() {
 
             <div className={styles.grid}>
                 {resources.map((resource, index) => (
-                    <div key={index} className={styles.resourceCard}>
-                        <div
-                            className={styles.iconWrapper}
-                            style={{ background: resource.color }}
-                        >
-                            {resource.icon}
-                        </div>
-
-                        <h3 className={styles.resourceTitle}>{resource.title}</h3>
-                        <p className={styles.resourceDesc}>{resource.description}</p>
-
-                        <div className={styles.footer}>
-                            <div className={styles.rating}>
-                                <Star size={16} fill="currentColor" />
-                                {resource.rating}
+                    <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        whileHover={{ y: -10 }}
+                        className="h-full"
+                    >
+                        <PremiumCard className={`${styles.resourceCard} h-full group`}>
+                            <div
+                                className={styles.iconWrapper}
+                                style={{ background: resource.color }}
+                            >
+                                {resource.icon}
                             </div>
 
-                            <button className={styles.action}>
-                                Access Now <ArrowRight size={16} />
-                            </button>
-                        </div>
-                    </div>
+                            <h3 className={styles.resourceTitle}>{resource.title}</h3>
+                            <p className={styles.resourceDesc}>{resource.description}</p>
+
+                            <motion.div
+                                className={styles.footer}
+                                initial={{ opacity: 0.8 }}
+                                whileHover={{ opacity: 1 }}
+                            >
+                                <div className={styles.rating}>
+                                    <Star size={16} fill="currentColor" />
+                                    {resource.rating}
+                                </div>
+
+                                <button className={styles.action}>
+                                    Access Now <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                                </button>
+                            </motion.div>
+                        </PremiumCard>
+                    </motion.div>
                 ))}
             </div>
         </section>

@@ -5,6 +5,8 @@ import Footer from "@/components/layout/Footer";
 import { AuthProvider } from "@/context/AuthContext";
 import { GamificationProvider } from "@/context/GamificationContext";
 import { RealTimeProvider } from "@/context/RealTimeContext";
+import { AnimatedBackground } from '@/components/AnimatedBackground';
+import { ScrollProgress } from '@/components/ScrollProgress';
 import BackgroundMesh from '@/components/layout/BackgroundMesh';
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import "./globals.css";
@@ -34,7 +36,9 @@ export default function RootLayout({
           <AuthProvider>
             <GamificationProvider>
               <RealTimeProvider>
-                <BackgroundMesh />
+                <ScrollProgress />
+                <AnimatedBackground />
+                {/* <BackgroundMesh /> */}
                 <Navbar />
                 <main style={{ position: 'relative', zIndex: 1 }}>
                   {children}

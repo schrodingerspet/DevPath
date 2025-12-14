@@ -66,6 +66,20 @@ export default function Footer() {
                                 <Globe size={16} /> Translate
                             </Link>
                         </div>
+
+                        <div className="mt-8">
+                            <h4 className="text-sm font-semibold text-gray-400 mb-4">Stay Updated</h4>
+                            <div className="flex gap-2">
+                                <input
+                                    type="email"
+                                    placeholder="Enter your email"
+                                    className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500 transition-colors w-full"
+                                />
+                                <button className="bg-cyan-500 hover:bg-cyan-400 text-black rounded-lg p-2 transition-colors">
+                                    <Send size={16} />
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -76,13 +90,13 @@ export default function Footer() {
                         <p><span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>Technical Head</span> - Pranav Khaire</p>
                     </div>
                     <div className={styles.socials}>
-                        <a href="#" className={styles.socialIcon} aria-label="GitHub">
+                        <a href="#" className={`${styles.socialIcon} hover:scale-110 hover:text-cyan-400 transition-all`} aria-label="GitHub">
                             <Github size={20} />
                         </a>
-                        <a href="#" className={styles.socialIcon} aria-label="Telegram">
+                        <a href="#" className={`${styles.socialIcon} hover:scale-110 hover:text-cyan-400 transition-all`} aria-label="Telegram">
                             <Send size={20} />
                         </a>
-                        <a href="#" className={styles.socialIcon} aria-label="Twitter">
+                        <a href="#" className={`${styles.socialIcon} hover:scale-110 hover:text-cyan-400 transition-all`} aria-label="Twitter">
                             <Twitter size={20} />
                         </a>
                     </div>

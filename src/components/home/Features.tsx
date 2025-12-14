@@ -1,5 +1,5 @@
 import { Code2, Video, Grid, Bot, Trophy, MessageSquare } from 'lucide-react';
-import Card from '../ui/Card';
+import { PremiumCard } from '../ui/PremiumCard';
 import styles from './Features.module.css';
 
 const features = [
@@ -54,7 +54,7 @@ export default function Features() {
 
             <div className={styles.grid}>
                 {features.map((feature, index) => (
-                    <Card key={index}>
+                    <PremiumCard key={index}>
                         <div
                             className={styles.iconWrapper}
                             style={{ background: feature.color }}
@@ -63,7 +63,7 @@ export default function Features() {
                         </div>
                         <h3 className={styles.featureTitle}>{feature.title}</h3>
                         <p className={styles.featureDescription}>{feature.description}</p>
-                    </Card>
+                    </PremiumCard>
                 ))}
             </div>
         </section>

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Globe, Github, LogIn } from 'lucide-react';
 import logo from '@/assets/logo.png';
 import { useAuth } from '@/context/AuthContext';
-import Notifications from './Notifications';
+import { NotificationDropdown } from '@/components/NotificationDropdown';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import styles from './Navbar.module.css';
 
@@ -44,7 +44,7 @@ export default function Navbar() {
                     <Github size={20} />
                 </a>
 
-                <Notifications />
+                <NotificationDropdown />
 
                 {user ? (
                     <Link href="/profile" className={styles.profileButton}>
