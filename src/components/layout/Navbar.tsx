@@ -25,7 +25,6 @@ export default function Navbar() {
                 <Link href="/community" className={styles.navLink}>Community</Link>
                 <Link href="/resources" className={styles.navLink}>Resources</Link>
                 <Link href="/events" className={styles.navLink}>Events</Link>
-                <Link href="/leaderboard" className={styles.navLink}>Leaderboard</Link>
             </div>
 
             <div className={styles.actions}>

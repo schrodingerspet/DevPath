@@ -1,27 +1,37 @@
-import { Download, ArrowRight } from 'lucide-react';
+import { ArrowRight, Play, Code2, Terminal, Cpu, Download } from 'lucide-react';
 import Button from '../ui/Button';
+import ParticleSystem from '../ui/ParticleSystem';
 import styles from './Hero.module.css';
+
+import { MagneticText } from '../ui/magnetic-text';
 
 export default function Hero() {
     return (
         <section className={styles.hero}>
+            <ParticleSystem />
             <div className={styles.glow} />
 
             <div className={styles.content}>
-                <h1 className={styles.title}>
-                    Master Your<br />
-                    Developer Journey
-                </h1>
+                <div className="flex flex-col items-center gap-4 mb-8">
+                    <MagneticText
+                        text="MASTER YOUR"
+                        hoverText="ACCELERATE"
+                        className="text-5xl md:text-7xl font-bold tracking-tighter"
+                    />
+                    <MagneticText
+                        text="DEV JOURNEY"
+                        hoverText="EXCELLENCE"
+                        className="text-5xl md:text-7xl font-bold tracking-tighter"
+                    />
+                </div>
                 <p className={styles.subtitle}>
                     Join 50,000+ developers accelerating their coding skills through structured paths,
                     real projects, and an active community.
                 </p>
 
                 <div className={styles.ctas}>
-                    <Button variant="primary" icon={<Download size={20} />}>
-                        Download App
-                    </Button>
-                    <Button variant="secondary" icon={<ArrowRight size={20} />}>
+                    {/* TODO: Add Download CTA when mobile app launches */}
+                    <Button variant="primary" icon={<ArrowRight size={20} />}>
                         Explore Paths
                     </Button>
                 </div>

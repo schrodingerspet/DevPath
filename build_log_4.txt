@@ -1,0 +1,22 @@
+
+> devpath@0.1.0 build
+> next build
+
+   Γû▓ Next.js 16.0.10 (Turbopack)
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully in 12.7s
+   Running TypeScript ...
+Failed to compile.
+
+./src/app/backups/page.tsx:94:34
+Type error: Property 'children' is missing in type '{ variant: "ghost"; className: string; icon: Element; }' but required in type 'ButtonProps'.
+
+  92 |                                     Download
+  93 |                                 </Button>
+> 94 |                                 <Button variant="ghost" className="!p-2" icon={<RefreshCw size={16} />} />
+     |                                  ^
+  95 |                                 <Button variant="ghost" className="!p-2 !text-red-400 hover:!bg-red-500/10" icon={<Trash2 size={16} />} />
+  96 |                             </div>
+  97 |                         </div>
+Next.js build worker exited with code: 1 and signal: null

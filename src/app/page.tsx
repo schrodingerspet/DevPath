@@ -4,7 +4,6 @@ import Community from '@/components/home/Community';
 import Projects from '@/components/home/Projects';
 import LearningPaths from '@/components/home/LearningPaths';
 import Events from '@/components/home/Events';
-import Leaderboard from '@/components/home/Leaderboard';
 import Resources from '@/components/home/Resources';
 
 export default function Home() {
@@ -16,7 +15,6 @@ export default function Home() {
       <Projects />
       <LearningPaths />
       <Events />
-      <Leaderboard />
       <Resources />
     </main>
   );

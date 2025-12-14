@@ -17,18 +17,6 @@
     margin-bottom: 60px;
 }
 
-.title {
-    font-size: 72px;
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -2px;
-    margin-bottom: 24px;
-    background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: fadeUp 0.8s ease-out;
-}
-
 .subtitle {
     font-size: 20px;
     color: var(--text-secondary);

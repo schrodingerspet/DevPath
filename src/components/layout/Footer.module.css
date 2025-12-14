@@ -45,11 +45,15 @@
 .link {
     color: var(--text-secondary);
     font-size: 14px;
-    transition: color 0.2s ease;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .link:hover {
-    color: var(--text-primary);
+    color: var(--accent-cyan);
+    transform: translateX(4px);
 }
 
 .bottom {

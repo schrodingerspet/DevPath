@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import ActivityFeed from "@/components/ui/ActivityFeed";
 import { AuthProvider } from "@/context/AuthContext";
 import { GamificationProvider } from "@/context/GamificationContext";
 import { RealTimeProvider } from "@/context/RealTimeContext";
+import BackgroundMesh from '@/components/layout/BackgroundMesh';
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: '--font-space' });
 
 export const metadata: Metadata = {
   title: "DevPath | Master Your Developer Journey",
@@ -22,13 +23,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
         <AuthProvider>
           <GamificationProvider>
             <RealTimeProvider>
+              <BackgroundMesh />
               <Navbar />
-              {children}
-              <ActivityFeed />
+              <main style={{ position: 'relative', zIndex: 1 }}>
+                {children}
+              </main>
               <Footer />
             </RealTimeProvider>
           </GamificationProvider>

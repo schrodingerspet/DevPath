@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Github, Twitter, Send } from 'lucide-react';
+import { Github, Twitter, Send, Book, Cloud, Flag, Users, RefreshCw, Code, Globe } from 'lucide-react';
 import styles from './Footer.module.css';
+
+import { MagneticText } from '../ui/magnetic-text';
 
 export default function Footer() {
     return (
@@ -20,22 +22,48 @@ export default function Footer() {
                     </div>
 
                     <div className={styles.column}>
-                        <h4>Resources</h4>
+                        <div className="mb-6">
+                            <MagneticText
+                                text="RESOURCES"
+                                hoverText="EXPLORE"
+                                className="text-xl font-bold"
+                            />
+                        </div>
                         <div className={styles.links}>
-                            <Link href="/wiki" className={styles.link}>Wiki</Link>
-                            <Link href="/backups" className={styles.link}>Backups</Link>
-                            <Link href="/flags" className={styles.link}>Flags</Link>
-                            <Link href="/contributors" className={styles.link}>Contributors</Link>
+                            <Link href="/wiki" className={styles.link}>
+                                <Book size={16} /> Wiki & Docs
+                            </Link>
+                            <Link href="/backups" className={styles.link}>
+                                <Cloud size={16} /> Backups
+                            </Link>
+                            <Link href="/flags" className={styles.link}>
+                                <Flag size={16} /> Feature Flags
+                            </Link>
+                            <Link href="/contributors" className={styles.link}>
+                                <Users size={16} /> Contributors
+                            </Link>
                         </div>
                     </div>
 
                     <div className={styles.column}>
-                        <h4>Links</h4>
+                        <div className="mb-6">
+                            <MagneticText
+                                text="LINKS"
+                                hoverText="VISIT"
+                                className="text-xl font-bold"
+                            />
+                        </div>
                         <div className={styles.links}>
-                            <Link href="/updater" className={styles.link}>Updater</Link>
-                            <Link href="/download" className={styles.link}>Download</Link>
-                            <Link href="/source" className={styles.link}>Source Code</Link>
-                            <Link href="/translate" className={styles.link}>Translate</Link>
+                            <Link href="/updater" className={styles.link}>
+                                <RefreshCw size={16} /> Updater
+                            </Link>
+                            {/* TODO: Add Download CTA when mobile app launches */}
+                            <Link href="/source-code" className={styles.link}>
+                                <Code size={16} /> Source Code
+                            </Link>
+                            <Link href="/translate" className={styles.link}>
+                                <Globe size={16} /> Translate
+                            </Link>
                         </div>
                     </div>
                 </div>

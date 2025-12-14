@@ -1,0 +1,5 @@
+
+> devpath@0.1.0 start
+> next start 3001
+
+Invalid project directory provided, no such directory: J:\Restricted\Projects\DevPath\3001

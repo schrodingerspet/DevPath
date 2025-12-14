@@ -1,8 +1,23 @@
-import { Clock, BookOpen, ArrowRight } from 'lucide-react';
+"use client";
+
+import { useState } from 'react';
+import { Clock, BookOpen, ArrowRight, Bell } from 'lucide-react';
 import Button from '../ui/Button';
+import ComingSoonBadge from '../features/ComingSoonBadge';
 import styles from './LearningPaths.module.css';
 
-const paths = [
+interface Path {
+    title: string;
+    difficulty: string;
+    duration: string;
+    modules: number;
+    color: string;
+    highlights: string[];
+    students: number;
+    status: 'available' | 'coming-soon';
+}
+
+const paths: Path[] = [
     {
         title: "Full Stack React",
         difficulty: "Intermediate",
@@ -10,7 +25,8 @@ const paths = [
         modules: 24,
         color: "linear-gradient(135deg, #3b82f6, #1d4ed8)",
         highlights: ["Next.js App Router", "Server Actions", "PostgreSQL & Prisma"],
-        students: 12500
+        students: 12500,
+        status: 'coming-soon'
     },
     {
         title: "Python for AI",
@@ -19,7 +35,8 @@ const paths = [
         modules: 32,
         color: "linear-gradient(135deg, #f59e0b, #b45309)",
         highlights: ["PyTorch Fundamentals", "Neural Networks", "LLM Integration"],
-        students: 8400
+        students: 8400,
+        status: 'coming-soon'
     },
     {
         title: "DevOps Mastery",
@@ -28,7 +45,8 @@ const paths = [
         modules: 28,
         color: "linear-gradient(135deg, #8b5cf6, #6d28d9)",
         highlights: ["Docker & Kubernetes", "CI/CD Pipelines", "AWS Infrastructure"],
-        students: 6200
+        students: 6200,
+        status: 'coming-soon'
     },
     {
         title: "Web3 Development",
@@ -37,11 +55,34 @@ const paths = [
         modules: 20,
         color: "linear-gradient(135deg, #10b981, #047857)",
         highlights: ["Solidity Smart Contracts", "Ethers.js", "DApp Architecture"],
-        students: 4500
+        students: 4500,
+        status: 'coming-soon'
     }
 ];
 
 export default function LearningPaths() {
+    const [showNotifyModal, setShowNotifyModal] = useState(false);
+    const [selectedPath, setSelectedPath] = useState<string>("");
+    const [email, setEmail] = useState("");
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
+    const handlePathClick = (path: Path) => {
+        if (path.status === 'coming-soon') {
+            setSelectedPath(path.title);
+            setShowNotifyModal(true);
+            setIsSubmitted(false);
+            setEmail("");
+        }
+    };
+
+    const handleNotifySubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        // Simulate API call
+        setTimeout(() => {
+            setIsSubmitted(true);
+        }, 1000);
+    };
+
     return (
         <section className={styles.learningPaths}>
             <div className={styles.header}>
@@ -55,9 +96,12 @@ export default function LearningPaths() {
                 {paths.map((path, index) => (
                     <div
                         key={index}
-                        className={styles.pathCard}
+                        className={`${styles.pathCard} ${path.status === 'coming-soon' ? styles.comingSoon : ''}`}
                         style={{ background: path.color }}
+                        onClick={() => handlePathClick(path)}
                     >
+                        {path.status === 'coming-soon' && <ComingSoonBadge />}
+
                         <div>
                             <span className={styles.badge}>{path.difficulty}</span>
                             <h3 className={styles.pathTitle}>{path.title}</h3>
@@ -86,13 +130,58 @@ export default function LearningPaths() {
                                 <span className={styles.studentCount}>+{path.students.toLocaleString()} enrolled</span>
                             </div>
 
-                            <Button variant="ghost" className="!p-2 !bg-white/20 hover:!bg-white/30 !text-white">
-                                <ArrowRight size={20} />
+                            <Button
+                                variant="ghost"
+                                className="!p-2 !bg-white/20 hover:!bg-white/30 !text-white"
+                                onClick={(e) => {
+                                    if (path.status === 'coming-soon') {
+                                        e.stopPropagation();
+                                        handlePathClick(path);
+                                    }
+                                }}
+                            >
+                                {path.status === 'coming-soon' ? <Bell size={20} /> : <ArrowRight size={20} />}
                             </Button>
                         </div>
                     </div>
                 ))}
             </div>
+
+            {showNotifyModal && (
+                <div className={styles.modalOverlay} onClick={() => setShowNotifyModal(false)}>
+                    <div className={styles.modal} onClick={e => e.stopPropagation()}>
+                        <button className={styles.closeButton} onClick={() => setShowNotifyModal(false)}>×</button>
+
+                        {!isSubmitted ? (
+                            <>
+                                <h3 className={styles.modalTitle}>Coming Soon! 🚀</h3>
+                                <p className={styles.modalText}>
+                                    We're crafting an amazing curriculum for <strong>{selectedPath}</strong>.
+                                    Want to be notified when it launches?
+                                </p>
+                                <form onSubmit={handleNotifySubmit} className={styles.notifyForm}>
+                                    <input
+                                        type="email"
+                                        placeholder="Enter your email"
+                                        className={styles.emailInput}
+                                        value={email}
+                                        onChange={e => setEmail(e.target.value)}
+                                        required
+                                    />
+                                    <Button variant="primary" type="submit">Notify Me</Button>
+                                </form>
+                            </>
+                        ) : (
+                            <div className={styles.successMessage}>
+                                <div className={styles.successIcon}>✨</div>
+                                <h3>You're on the list!</h3>
+                                <p>We'll email you when {selectedPath} is ready.</p>
+                                <Button variant="secondary" onClick={() => setShowNotifyModal(false)}>Close</Button>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
         </section>
     );
 }
