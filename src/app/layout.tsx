@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk, Barlow_Condensed } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { AuthProvider } from "@/context/AuthContext";
@@ -13,6 +13,11 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: '--font-space' });
+const barlowCondensed = Barlow_Condensed({
+  weight: ['900'],
+  subsets: ['latin'],
+  variable: '--font-barlow'
+});
 
 export const metadata: Metadata = {
   title: "DevPath | Master Your Developer Journey",
@@ -26,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} ${barlowCondensed.variable}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

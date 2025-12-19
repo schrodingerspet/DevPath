@@ -1,13 +1,21 @@
 "use client"
-import { motion } from "framer-motion"
+import { motion, useReducedMotion } from "framer-motion"
 import { useState, useEffect } from "react"
 
 export function FloatingParticles() {
     const [mounted, setMounted] = useState(false)
     const [particles, setParticles] = useState<Array<{ symbol: string, delay: number, duration: number, x: number, y: number, initialX: number, initialY: number }>>([])
+    const [isMobile, setIsMobile] = useState(false)
+    const shouldReduceMotion = useReducedMotion()
 
     useEffect(() => {
         setMounted(true)
+
+        // Check if mobile
+        const checkMobile = () => setIsMobile(window.innerWidth < 768)
+        checkMobile()
+        window.addEventListener('resize', checkMobile)
+
         const particleConfig = [
             { symbol: "</>", delay: 0, duration: 15, x: 100, y: -100 },
             { symbol: "{ }", delay: 2, duration: 18, x: -80, y: -120 },
@@ -17,17 +25,26 @@ export function FloatingParticles() {
             { symbol: "&&", delay: 5, duration: 19, x: -120, y: -100 },
         ]
 
-        setParticles(particleConfig.map(p => ({
+        // Use fewer particles on mobile for performance
+        const configToUse = isMobile ? particleConfig.slice(0, 3) : particleConfig
+
+        setParticles(configToUse.map(p => ({
             ...p,
             initialX: Math.random() * 100,
             initialY: Math.random() * 100
         })))
-    }, [])
 
-    if (!mounted) return null
+        return () => window.removeEventListener('resize', checkMobile)
+    }, [isMobile])
+
+    // Don't render if user prefers reduced motion or not mounted
+    if (!mounted || shouldReduceMotion) return null
 
     return (
-        <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div
+            className="fixed inset-0 pointer-events-none overflow-hidden z-0"
+            style={{ contain: 'strict' }}
+        >
             {particles.map((particle, i) => (
                 <motion.div
                     key={i}
@@ -35,6 +52,7 @@ export function FloatingParticles() {
                     style={{
                         left: `${particle.initialX}%`,
                         top: `${particle.initialY}%`,
+                        willChange: 'transform',
                     }}
                     animate={{
                         y: [0, particle.y, 0],
